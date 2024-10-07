@@ -1,5 +1,5 @@
 import { Champions } from "@/types/Champion";
-import { ChampionRotation } from "@/types/ChampionRotation";
+import { RotationIds } from "@/types/ChampionRotation";
 import { NextResponse } from "next/server";
 // import { NextResponse } from "next/server";
 
@@ -23,8 +23,9 @@ export async function GET() {
       },
     }
   );
-  const rotations: ChampionRotation = await response.json();
+  const rotations: RotationIds = await response.json();
 
+  console.log("로테이션 : ", rotations);
   const resultRotationIds = rotations.freeChampionIds;
 
   //버전 불러오기
@@ -45,7 +46,7 @@ export async function GET() {
 
   const filteredChampions = Object.values(championIdList).filter(
     (it: Champions) => {
-      return resultRotationIds.includes(Number(it.key));
+      return resultRotationIds.some((el) => el === Number(it.key));
     }
   );
 

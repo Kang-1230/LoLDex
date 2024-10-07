@@ -35,12 +35,7 @@ export default function RootLayout({
               <Image
                 src={Logo}
                 alt="Logo"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
                 className="w-20 h-20 text-white p-2 rounded-full fill-none stroke-currentColor"
-                viewBox="0 0 24 24"
               />
               <span className="ml-3 text-xl">LoLDex</span>
             </a>
