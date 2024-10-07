@@ -22,7 +22,8 @@ export default async function page({ params }: Props) {
   const detailResult = championDetail.detail.data[params.id];
 
   return (
-    <><section class="text-gray-600 body-font">
+    <>
+      {/* <section class="text-gray-600 body-font">
     <div class="container px-5 py-24 mx-auto flex flex-wrap">
       <div class="flex flex-wrap w-full">
         <div class="lg:w-2/5 md:w-1/2 md:pr-10 md:py-6">
@@ -100,7 +101,7 @@ export default async function page({ params }: Props) {
         <img class="lg:w-3/5 md:w-1/2 object-cover object-center rounded-lg md:mt-0 mt-12" src="https://dummyimage.com/1200x500" alt="step">
       </div>
     </div>
-  </section>
+  </section> */}
       <div>{detailResult.title}</div>
       <div>{detailResult.name}</div>
       <Image
