@@ -25,7 +25,7 @@ export async function GET() {
   );
   const rotations: RotationIds = await response.json();
 
-  console.log("로테이션 : ", rotations);
+  // console.log("로테이션 : ", rotations);
   const resultRotationIds = rotations.freeChampionIds;
 
   //버전 불러오기
