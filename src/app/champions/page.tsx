@@ -8,7 +8,6 @@ export const revalidate = 86400;
 
 export default async function Page() {
   const championList: Champions[] = await fetchChampionList();
-  // console.log("리스트 : ", championList);
   return (
     <div>
       <h1 className="text-center text-3xl font-bold my-6">Champions</h1>

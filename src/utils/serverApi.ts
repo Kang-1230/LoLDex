@@ -4,7 +4,6 @@ import { Champion, ChampionResponse } from "@/types/Champion";
 import { Datum, Item } from "@/types/Item";
 
 export async function getVersion() {
-  //콘솔 확인 완
   const versionResponse = await fetch(
     "https://ddragon.leagueoflegends.com/api/versions.json"
   );
@@ -14,7 +13,6 @@ export async function getVersion() {
 }
 
 export async function fetchChampionList() {
-  //모두 콘솔 확인
   const version = await getVersion();
   const championsList = await fetch(
     `https://ddragon.leagueoflegends.com/cdn/${version}/data/ko_KR/champion.json`
@@ -36,7 +34,6 @@ export async function getChampionDetail(id: string) {
   return { detail };
 }
 
-//아이템
 export async function getItemList() {
   const { RIOT_API_KEY } = process.env;
 
@@ -49,7 +46,6 @@ export async function getItemList() {
   );
   const items: Item = await itemList.json();
   const itemData: Datum[] = Object.values(items.data);
-  console.log("데이터 아이템 : ", itemData);
 
   return { itemData };
 }

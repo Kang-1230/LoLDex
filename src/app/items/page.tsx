@@ -4,7 +4,6 @@ import Image from "next/image";
 
 export default async function Page() {
   const ItemList = await getItemList();
-  console.log("아이템 리스트 다툼 :", ItemList.itemData);
   return (
     <>
       <h1 className="text-center text-3xl font-bold my-6">Items</h1>
@@ -30,27 +29,3 @@ export default async function Page() {
     </>
   );
 }
-
-// export default async function Page() {
-//   const championList: Champions[] = await getChampionList();
-//   // console.log("리스트 : ", championList);
-//   return (
-//     <>
-//       <div className="">
-//         {championList.map((champion: Champions) => {
-//           return (
-//             <div key={champion.id}>
-//               <Image
-//                 src={`https://ddragon.leagueoflegends.com/cdn/14.19.1/img/champion/${champion.image.full}`}
-//                 alt={champion.name}
-//                 width={100}
-//                 height={100}
-//               />
-//               <li>{champion.name}</li>
-//             </div>
-//           );
-//         })}
-//       </div>
-//     </>
-//   );
-// }
