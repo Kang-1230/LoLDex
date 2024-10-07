@@ -7,10 +7,14 @@ export default async function Page() {
   console.log("아이템 리스트 다툼 :", ItemList.itemData);
   return (
     <>
-      <div className="">
+      <h1 className="text-center text-3xl font-bold my-6">Items</h1>
+      <div className="px-60 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 lg:grid-cols-8 gap-4 p-4 ">
         {ItemList.itemData.map((item: Datum) => {
           return (
-            <div key={item.image.full}>
+            <div
+              key={item.image.full}
+              className="w-36 h-48 border border-gray-300 flex flex-col items-center justify-center rounded-lg p-2"
+            >
               <Image
                 src={`https://ddragon.leagueoflegends.com/cdn/14.19.1/img/item/${item.image.full}`}
                 alt={item.name}
@@ -18,7 +22,7 @@ export default async function Page() {
                 height={100}
                 priority
               />
-              <li>{item.name}</li>
+              <li className="mt-2 text-center list-none">{item.name}</li>
             </div>
           );
         })}
