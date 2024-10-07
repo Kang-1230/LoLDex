@@ -7,8 +7,8 @@ import Providers from "@/components/providers";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Sparta Next App",
-  description: "This is awesome Website",
+  title: "LoLDex",
+  description: "롤 정보 모음",
 };
 
 export default function RootLayout({
@@ -25,6 +25,7 @@ export default function RootLayout({
             <Link href="/champions">Champions</Link>
           </Providers>
           <Link href="/items">Items</Link>
+          <Link href="/rotation">Rotation</Link>
         </nav>
         {children}
       </body>

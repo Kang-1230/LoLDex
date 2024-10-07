@@ -1,3 +1,3 @@
 export type ChampionRotation = {
-  freeChampionIds: object;
+  freeChampionIds: Array<number>;
 };

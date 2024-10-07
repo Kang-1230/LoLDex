@@ -1,3 +1,10 @@
+export interface ChampionResponse {
+  type: string;
+  format: string;
+  version: string;
+  data: object;
+}
+
 export interface Champions {
   version: Version;
   id: string;
@@ -48,3 +55,38 @@ export enum Tag {
 export enum Version {
   The14191 = "14.19.1",
 }
+
+export type Spell = {
+  id: string;
+  name: string;
+  description: string;
+  image: {
+    full: string;
+  };
+};
+
+export type Champion = {
+  type: string;
+  format: string;
+  version: string;
+  data: {
+    [key: string]: {
+      id: string;
+      key: string;
+      name: string;
+      title: string;
+      image: {
+        full: string;
+      };
+      lore: string;
+      spells: Spell[];
+      passive: {
+        name: string;
+        description: string;
+        image: {
+          full: string;
+        };
+      };
+    };
+  };
+};

@@ -1,7 +1,9 @@
+import { Champions } from "@/types/Champion";
 import { ChampionRotation } from "@/types/ChampionRotation";
+import { NextResponse } from "next/server";
 // import { NextResponse } from "next/server";
 
-export async function GET(request: Request) {
+export async function GET() {
   //API KEY 불러오기
   const { RIOT_API_KEY } = process.env;
 
@@ -11,19 +13,7 @@ export async function GET(request: Request) {
     throw new Error("api key undefind");
   }
 
-  //   //data 버전값
-  //   const versionResponse = await fetch(
-  //     "https://ddragon.leagueoflegends.com/api/versions.json",
-  //     {
-  //       method: "GET",
-  //       headers: {
-  //         "X-Riot-Token": RIOT_API_KEY,
-  //       },
-  //     }
-  //   );
-  //   const version: string = await versionResponse.json();
-
-  //rotation champions id값 불러오기
+  //rotation champions id값 불러오기//콘솔 체크 완
   const response = await fetch(
     "https://kr.api.riotgames.com/lol/platform/v3/champion-rotations",
     {
@@ -34,22 +24,38 @@ export async function GET(request: Request) {
     }
   );
   const rotations: ChampionRotation = await response.json();
-  console.log(rotations);
 
-  //   const rotationIds = await rotations;
-  //   const resultRotaionIds = rotationIds.freeChampionIds
-  //     ? Object.values(rotationIds.freeChampionIds)
-  //     : [];
+  const resultRotationIds = rotations.freeChampionIds;
 
-  //champions 목록 불러오기
+  //버전 불러오기
+  const versionResponse = await fetch(
+    "https://ddragon.leagueoflegends.com/api/versions.json"
+  );
+  const version = await versionResponse.json();
 
-  const championsList = await fetch("/api/champions");
-  console.log(championsList);
+  // champions 목록 불러오기
+
+  const championsListresult = await fetch(
+    `https://ddragon.leagueoflegends.com/cdn/${version[0]}/data/ko_KR/champion.json`
+  );
+  const championList = await championsListresult.json();
+  const championIdList: { [key: string]: Champions } = championList.data;
 
   //필터링 함수
-  //   const filteredChampions = resultRotaionIds.filter((id) => {
-  //     championsList.includes(id);
-  //   });
+
+  const filteredChampions = Object.values(championIdList).filter(
+    (it: Champions) => {
+      return resultRotationIds.includes(Number(it.key));
+    }
+  );
 
   //   return NextResponse.json(filteredChampions);
+
+  return NextResponse.json({
+    // rotations,
+    // resultRotationIds,
+    // // version,
+    // championIdList,
+    filteredChampions,
+  });
 }
