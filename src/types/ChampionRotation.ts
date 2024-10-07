@@ -1,3 +1,8 @@
+export interface RotationIds {
+  freeChampionIds: number[];
+  freeChampionIdsForNewPlayers: number[];
+}
+
 export type ChampionRotation = {
   filteredChampions: RotationChampionDetail[];
 };
